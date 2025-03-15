@@ -1,31 +1,31 @@
 let currentPage = 0;
-let totalPages = 25; // Set to 25 samples; adjust to 50 or more as needed
+let totalPages = 25; // Keeping it at 25 as per your list
 let images = [
-  "https://i.postimg.cc/YCzZjY2r/sample1-page-0001.jpg", // Sample 1
-  "https://i.postimg.cc/ryYS70wY/sample2-page-0001.jpg", // Sample 2
-  "https://i.postimg.cc/XYxFcpm8/sample3-page-0001.jpg", // Sample 3
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+4", // Placeholder for page 4
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+5", // Placeholder for page 5
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+6", // Placeholder for page 6
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+7", // Placeholder for page 7
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+8", // Placeholder for page 8
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+9", // Placeholder for page 9
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+10", // Placeholder for page 10
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+11", // Placeholder for page 11
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+12", // Placeholder for page 12
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+13", // Placeholder for page 13
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+14", // Placeholder for page 14
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+15", // Placeholder for page 15
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+16", // Placeholder for page 16
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+17", // Placeholder for page 17
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+18", // Placeholder for page 18
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+19", // Placeholder for page 19
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+20", // Placeholder for page 20
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+21", // Placeholder for page 21
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+22", // Placeholder for page 22
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+23", // Placeholder for page 23
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+24", // Placeholder for page 24
-  "https://via.placeholder.com/1229x819.png?text=Sample+Page+25"  // Placeholder for page 25
+  "https://i.postimg.cc/tJVFrYYT/1.jpg",
+  "https://i.postimg.cc/DfsgdMsc/2.jpg",
+  "https://i.postimg.cc/nVYmLbBN/3.jpg",
+  "https://i.postimg.cc/Dy0z3tgr/4.jpg",
+  "https://i.postimg.cc/wBg8gNpC/5.jpg",
+  "https://i.postimg.cc/HLBKmP3M/6.jpg",
+  "https://i.postimg.cc/5N5WGpcB/7.jpg",
+  "https://i.postimg.cc/qvBSFTxr/8.jpg",
+  "https://i.postimg.cc/sf9nCLXg/9.jpg",
+  "https://i.postimg.cc/85T6RZVZ/10.jpg",
+  "https://i.postimg.cc/gjCcD0ZG/11.jpg",
+  "https://i.postimg.cc/htgQWCXc/12.jpg",
+  "https://i.postimg.cc/SxTSTV8Z/13.jpg",
+  "https://i.postimg.cc/9QK3wkyj/14.jpg",
+  "https://i.postimg.cc/RVhb1RSC/15.jpg",
+  "https://i.postimg.cc/gJ0v9gBn/16.jpg",
+  "https://i.postimg.cc/BZkzJzfW/17.jpg",
+  "https://i.postimg.cc/8kMRrXrg/18.jpg",
+  "https://i.postimg.cc/d1M7sv6k/19.jpg",
+  "https://i.postimg.cc/MZ5G41Cj/20.jpg",
+  "https://i.postimg.cc/W1kT2ZH8/21.jpg",
+  "https://i.postimg.cc/sgpq64Lk/22.jpg",
+  "https://i.postimg.cc/j5mr0d4m/23.jpg",
+  "https://i.postimg.cc/RVxjcYs7/24.jpg",
+  "https://i.postimg.cc/7ZG0wB4R/25.jpg"
 ];
 
 function prevPage() {
@@ -47,9 +47,13 @@ function nextPage() {
 }
 
 function updateFlipbook() {
+  const pageElement = document.querySelector(".page");
   const pageImg = document.querySelector(".page img");
   pageImg.src = images[currentPage];
   pageImg.alt = `Sample Page ${currentPage + 1}`; // Update alt text dynamically
+  setTimeout(() => {
+    pageElement.classList.remove("flip-right", "flip-left");
+  }, 10); // Small delay to retrigger animation
   console.log('Page changed to:', currentPage);
 }
 
