@@ -1,5 +1,5 @@
 let currentPage = 0;
-let totalPages = 25; // Keeping it at 25 as per your list
+let totalPages = 25;
 let images = [
   "https://i.postimg.cc/tJVFrYYT/1.jpg",
   "https://i.postimg.cc/DfsgdMsc/2.jpg",
@@ -28,32 +28,37 @@ let images = [
   "https://i.postimg.cc/7ZG0wB4R/25.jpg"
 ];
 
+// Preload images
+function preloadImages() {
+  images.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+preloadImages();
+
 function prevPage() {
   const pageElement = document.querySelector(".page");
-  pageElement.classList.add("flip-left"); // Add flip animation
+  pageElement.classList.add("fade"); // Trigger fade animation
   setTimeout(() => {
-    currentPage = (currentPage - 1 + totalPages) % totalPages; // Loop to end if at 0
+    currentPage = (currentPage - 1 + totalPages) % totalPages;
     updateFlipbook();
-  }, 300); // Match the animation duration (0.6s / 2)
+  }, 500); // Match full animation duration
 }
 
 function nextPage() {
   const pageElement = document.querySelector(".page");
-  pageElement.classList.add("flip-right"); // Add flip animation
+  pageElement.classList.add("fade"); // Trigger fade animation
   setTimeout(() => {
-    currentPage = (currentPage + 1) % totalPages; // Loop to 0 if at end
+    currentPage = (currentPage + 1) % totalPages;
     updateFlipbook();
-  }, 300); // Match the animation duration (0.6s / 2)
+  }, 500); // Match full animation duration
 }
 
 function updateFlipbook() {
-  const pageElement = document.querySelector(".page");
   const pageImg = document.querySelector(".page img");
   pageImg.src = images[currentPage];
-  pageImg.alt = `Sample Page ${currentPage + 1}`; // Update alt text dynamically
-  setTimeout(() => {
-    pageElement.classList.remove("flip-right", "flip-left");
-  }, 10); // Small delay to retrigger animation
+  pageImg.alt = `Sample Page ${currentPage + 1}`;
   console.log('Page changed to:', currentPage);
 }
 
