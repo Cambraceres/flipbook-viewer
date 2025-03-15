@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Flipbook</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="flipbook-container">
+    <button onclick="prevPage()" class="arrow left-arrow" aria-label="Previous Page">
+      <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <div id="flipbook">
+      <div class="page">
+        <img src="https://i.postimg.cc/YCzZjY2r/sample1-page-0001.jpg" alt="Sample Page 1">
+      </div>
+    </div>
+    <button onclick="nextPage()" class="arrow right-arrow" aria-label="Next Page">
+      <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
