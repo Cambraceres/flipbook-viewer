@@ -28,7 +28,7 @@ let images = [
   "https://i.postimg.cc/7ZG0wB4R/25.jpg"
 ];
 
-// Preload images
+// Preload images to reduce lag
 function preloadImages() {
   images.forEach(src => {
     const img = new Image();
@@ -39,23 +39,26 @@ preloadImages();
 
 function prevPage() {
   const pageElement = document.querySelector(".page");
-  pageElement.classList.add("fade"); // Trigger fade animation
+  pageElement.classList.add("flip-left");
   setTimeout(() => {
     currentPage = (currentPage - 1 + totalPages) % totalPages;
     updateFlipbook();
-  }, 500); // Match full animation duration
+    pageElement.classList.remove("flip-left");
+  }, 600); // Match full animation duration
 }
 
 function nextPage() {
   const pageElement = document.querySelector(".page");
-  pageElement.classList.add("fade"); // Trigger fade animation
+  pageElement.classList.add("flip-right");
   setTimeout(() => {
     currentPage = (currentPage + 1) % totalPages;
     updateFlipbook();
-  }, 500); // Match full animation duration
+    pageElement.classList.remove("flip-right");
+  }, 600); // Match full animation duration
 }
 
 function updateFlipbook() {
+  const pageElement = document.querySelector(".page");
   const pageImg = document.querySelector(".page img");
   pageImg.src = images[currentPage];
   pageImg.alt = `Sample Page ${currentPage + 1}`;
