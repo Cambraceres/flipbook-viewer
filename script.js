@@ -28,7 +28,6 @@ let images = [
   "https://i.postimg.cc/7ZG0wB4R/25.jpg"
 ];
 
-// Preload images to reduce lag
 function preloadImages() {
   images.forEach(src => {
     const img = new Image();
@@ -43,8 +42,10 @@ function prevPage() {
   setTimeout(() => {
     currentPage = (currentPage - 1 + totalPages) % totalPages;
     updateFlipbook();
+  }, 300);
+  setTimeout(() => {
     pageElement.classList.remove("flip-left");
-  }, 600); // Match full animation duration
+  }, 600);
 }
 
 function nextPage() {
@@ -53,17 +54,17 @@ function nextPage() {
   setTimeout(() => {
     currentPage = (currentPage + 1) % totalPages;
     updateFlipbook();
+  }, 300);
+  setTimeout(() => {
     pageElement.classList.remove("flip-right");
-  }, 600); // Match full animation duration
+  }, 600);
 }
 
 function updateFlipbook() {
-  const pageElement = document.querySelector(".page");
   const pageImg = document.querySelector(".page img");
   pageImg.src = images[currentPage];
   pageImg.alt = `Sample Page ${currentPage + 1}`;
   console.log('Page changed to:', currentPage);
 }
 
-// Initialize the first page
 updateFlipbook();
