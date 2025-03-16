@@ -36,35 +36,44 @@ function preloadImages() {
 }
 preloadImages();
 
-function prevPage() {
-  const pageElement = document.querySelector(".page");
-  pageElement.classList.add("flip-left");
-  setTimeout(() => {
-    currentPage = (currentPage - 1 + totalPages) % totalPages;
-    updateFlipbook();
-  }, 300);
-  setTimeout(() => {
-    pageElement.classList.remove("flip-left");
-  }, 600);
+function updateFlipbook() {
+  const frontImg = document.querySelector(".front img");
+  const backImg = document.querySelector(".back img");
+  frontImg.src = images[currentPage];
+  frontImg.alt = `Sample Page ${currentPage + 1}`;
+  console.log('Page changed to:', currentPage);
 }
 
 function nextPage() {
-  const pageElement = document.querySelector(".page");
-  pageElement.classList.add("flip-right");
+  const frontPage = document.querySelector(".front");
+  const backPage = document.querySelector(".back");
+  const nextIndex = (currentPage + 1) % totalPages;
+  backPage.querySelector("img").src = images[nextIndex];
+  frontPage.classList.add("flip-right");
   setTimeout(() => {
-    currentPage = (currentPage + 1) % totalPages;
+    currentPage = nextIndex;
     updateFlipbook();
-  }, 300);
-  setTimeout(() => {
-    pageElement.classList.remove("flip-right");
+    frontPage.classList.remove("flip-right");
+    frontPage.style.zIndex = 1;
+    backPage.style.zIndex = 2;
+    [frontPage.className, backPage.className] = [backPage.className, frontPage.className];
   }, 600);
 }
 
-function updateFlipbook() {
-  const pageImg = document.querySelector(".page img");
-  pageImg.src = images[currentPage];
-  pageImg.alt = `Sample Page ${currentPage + 1}`;
-  console.log('Page changed to:', currentPage);
+function prevPage() {
+  const frontPage = document.querySelector(".front");
+  const backPage = document.querySelector(".back");
+  const prevIndex = (currentPage - 1 + totalPages) % totalPages;
+  backPage.querySelector("img").src = images[prevIndex];
+  frontPage.classList.add("flip-left");
+  setTimeout(() => {
+    currentPage = prevIndex;
+    updateFlipbook();
+    frontPage.classList.remove("flip-left");
+    frontPage.style.zIndex = 1;
+    backPage.style.zIndex = 2;
+    [frontPage.className, backPage.className] = [backPage.className, frontPage.className];
+  }, 600);
 }
 
 updateFlipbook();
